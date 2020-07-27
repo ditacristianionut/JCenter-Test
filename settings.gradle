@@ -1,3 +1,4 @@
+include ':secondlibrary'
 include ':mylibrary'
 include ':app'
 rootProject.name = "JCenter Test"

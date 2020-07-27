@@ -1,0 +1,45 @@
+apply plugin: 'com.jfrog.bintray'
+
+version = '1.0.0'
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+artifacts {
+//    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load( new FileInputStream("local.properties"))
+
+// Bintray
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apiKey")
+
+    pkg {
+        repo = 'maven'
+        name = 'com.dci.dev'
+        configurations = ['archives']
+        desc = 'An android library.'
+        websiteUrl = 'https://github.com/ditacristianionut/JCenter-Test'
+        vcsUrl = 'https://github.com/ditacristianionut/JCenter-Test.git'
+        licenses = ["Apache-2.0"]
+        override = true
+        publish = true
+        publicDownloadNumbers = true
+    }
+}

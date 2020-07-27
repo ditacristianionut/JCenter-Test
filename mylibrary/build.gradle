@@ -2,6 +2,30 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+    bintrayRepo = 'maven' // Repo name in bintray dashboard
+    bintrayName = 'com.dci.dev' // package name of the bintray repo
+
+    publishedGroupId = 'com.dci.dev'   // this is the ID we want to see in implementation line
+    libraryName = 'mylibrary'     // this is the module name of library
+    artifact = 'mylibrary'        // this is the artifact we want to see in implementation line
+
+    libraryDescription = 'Test project library description' // description of library
+
+    siteUrl = 'https://github.com/ditacristianionut/JCenter-Test'    // git repo url
+    gitUrl = 'https://github.com/ditacristianionut/JCenter-Test.git' // git repo vcs url
+
+    libraryVersion = '1.0.0'      // library version
+
+    developerId = 'ditacristainionut'                // This is your bintray username
+    developerName = 'Cristi Dita'              // Developer's name
+    developerEmail = 'ditacristianionut@gmail.com'                // Developer's email
+
+    licenseName = 'The Apache Software License, Version 2.0'  // for example, The Apache Software License, Version 2.0
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'   // for example, http://www.apache.org/licenses/LICENSE-2.0.txt
+    allLicenses = ["Apache-2.0"]    // array of licenses, for example, ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 29
 
@@ -33,3 +57,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }
+
+subprojects {
+    tasks.withType(Javadoc).all { enabled = false }
+}
+
+apply from: '../mylibrary/publish.gradle'

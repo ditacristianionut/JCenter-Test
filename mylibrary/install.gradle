@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.dci.dev'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.dci.dev'
+                artifactId 'mylibrary'
+                name 'mylibrary'
+                description 'An android library.'
+                url 'https://github.com/ditacristianionut/JCenter-Test'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'ditacristianionut'
+                        name 'Cristi Dita'
+                        email 'ditacristianionut@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection 'https://github.com/ditacristianionut/JCenter-Test.git'
+                    developerConnection 'https://github.com/ditacristianionut/JCenter-Test.git'
+                    url 'https://github.com/ditacristianionut/JCenter-Test'
+                }
+            }
+        }
+    }
+}
